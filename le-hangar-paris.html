@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Hangar — Restaurant français | 12 Imp. Berthaud, 75003 Paris</title>
+  <meta name="description" content="Le Hangar, restaurant français à Paris 3e (Le Marais). Adresse : 12 Imp. Berthaud, 75003 Paris. Téléphone : +33 1 42 74 55 44. Déjeuner & dîner du mardi au samedi." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          colors: {
+            obsidian: '#0B0F12',
+            ink: '#0F1418',
+            ash: '#A7B0B7',
+            bone: '#E8E4DC',
+            champagne: '#D6C6A8'
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(214,198,168,.10), 0 20px 60px rgba(0,0,0,.55)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Subtle film grain */
+    .grain:before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:url("https://images.unsplash.com/photo-1520975958221-6ddf3f2f3816?auto=format&fit=crop&w=1600&q=60");
+      background-size:cover; background-position:center;
+      opacity:.08; mix-blend-mode:overlay;
+      pointer-events:none;
+      filter: grayscale(1) contrast(1.1);
+    }
+
+    /* Hero background: texture, no faces */
+    .hero-bg{
+      background:
+        radial-gradient(1200px 600px at 20% 15%, rgba(214,198,168,.20), transparent 55%),
+        radial-gradient(900px 500px at 85% 30%, rgba(255,255,255,.08), transparent 55%),
+        linear-gradient(180deg, rgba(11,15,18,.20) 0%, rgba(11,15,18,.92) 70%, #0B0F12 100%),
+        url("https://images.unsplash.com/photo-1541976076758-347942db1975?auto=format&fit=crop&w=2400&q=70");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Scroll reveal */
+    .reveal{opacity:0; transform: translateY(18px); filter: blur(6px); transition: all 900ms cubic-bezier(.2,.8,.2,1);}
+    .reveal.is-visible{opacity:1; transform: translateY(0); filter: blur(0);}
+
+    /* Elegant divider */
+    .divider{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(214,198,168,.35), transparent);
+    }
+
+    /* Dark map treatment */
+    .map-frame{
+      filter: grayscale(1) invert(0.92) contrast(0.95) saturate(0.7);
+      border: 1px solid rgba(214,198,168,.18);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-obsidian text-bone font-sans selection:bg-champagne/20 selection:text-bone">
+  <!-- Top glow -->
+  <div class="fixed inset-x-0 top-0 h-24 pointer-events-none"
+       style="background: radial-gradient(800px 60px at 50% 0%, rgba(214,198,168,.18), transparent 70%);"></div>
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto max-w-7xl px-5">
+      <div class="mt-4 rounded-2xl border border-white/10 bg-ink/60 backdrop-blur-xl shadow-glow">
+        <div class="flex items-center justify-between px-4 sm:px-6 py-3">
+          <a href="#top" class="group flex items-baseline gap-3">
+            <span class="font-display text-lg sm:text-xl tracking-wide">Le Hangar</span>
+            <span class="hidden sm:inline text-xs text-ash group-hover:text-bone/90 transition">Paris 3e · Le Marais</span>
+          </a>
+
+          <nav class="hidden md:flex items-center gap-6 text-sm text-ash">
+            <a class="hover:text-bone transition" href="#experience">Expérience</a>
+            <a class="hover:text-bone transition" href="#menu">Menu</a>
+            <a class="hover:text-bone transition" href="#infos">Infos</a>
+            <a class="hover:text-bone transition" href="#acces">Accès</a>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <a href="tel:+33142745544"
+               class="inline-flex items-center gap-2 rounded-xl border border-champagne/25 bg-champagne/10 px-3 py-2 text-sm text-bone hover:bg-champagne/15 transition">
+              <i class="fa-solid fa-phone text-champagne/90"></i>
+              <span class="hidden sm:inline">Appeler</span>
+              <span class="sm:hidden">Tel</span>
+            </a>
+            <a href="#infos"
+               class="inline-flex items-center gap-2 rounded-xl bg-bone text-obsidian px-3 py-2 text-sm font-medium hover:opacity-90 transition">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span class="hidden sm:inline">Réserver</span>
+              <span class="sm:hidden">OK</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="relative min-h-screen hero-bg">
+    <div class="absolute inset-0 grain"></div>
+    <div class="relative mx-auto max-w-7xl px-5 pt-32 sm:pt-40 pb-16">
+      <div class="max-w-3xl">
+        <div class="reveal inline-flex items-center gap-2 rounded-full border border-white/10 bg-ink/40 px-4 py-2 text-xs text-ash">
+          <span class="w-1.5 h-1.5 rounded-full bg-champagne/90"></span>
+          Restaurant français · 12 Imp. Berthaud, 75003 Paris · Note Google : 4,6
+        </div>
+
+        <h1 class="reveal mt-6 font-display text-4xl sm:text-6xl leading-[1.05] tracking-tight">
+          Une adresse discrète,<br class="hidden sm:block" />
+          une cuisine française <span class="text-champagne/90">juste</span>.
+        </h1>
+
+        <p class="reveal mt-6 text-base sm:text-lg text-ash leading-relaxed">
+          À l’abri de l’agitation du Marais, Le Hangar propose une table simple, moderne et précise :
+          produits de saison, assiettes lisibles, service attentionné. Un lieu où l’on revient.
+        </p>
+
+        <div class="reveal mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#menu" class="rounded-2xl bg-bone text-obsidian px-6 py-3 font-medium hover:opacity-90 transition inline-flex items-center justify-center gap-2">
+            <i class="fa-solid fa-utensils"></i> Découvrir le menu
+          </a>
+          <a href="tel:+33142745544" class="rounded-2xl border border-white/15 bg-ink/50 px-6 py-3 font-medium hover:bg-ink/70 transition inline-flex items-center justify-center gap-2">
+            <i class="fa-solid fa-phone text-champagne/90"></i> +33 1 42 74 55 44
+          </a>
+        </div>
+
+        <div class="reveal mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+          <div class="rounded-2xl border border-white/10 bg-ink/55 p-4">
+            <div class="text-xs text-ash">Ambiance</div>
+            <div class="mt-1 font-medium">Bistrot calme & contemporain</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-ink/55 p-4">
+            <div class="text-xs text-ash">Service</div>
+            <div class="mt-1 font-medium">Déjeuner & dîner</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-ink/55 p-4">
+            <div class="text-xs text-ash">Métro</div>
+            <div class="mt-1 font-medium">Rambuteau (L11)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal mt-14 divider"></div>
+
+      <div class="reveal mt-10 grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div class="md:col-span-7">
+          <h2 class="font-display text-2xl sm:text-3xl">Une table à l’écart, pensée pour durer.</h2>
+          <p class="mt-4 text-ash leading-relaxed">
+            Le Hangar cultive une approche directe : une carte resserrée, des produits bien choisis,
+            des cuissons maîtrisées. L’objectif n’est pas d’en faire trop — mais de faire juste.
+          </p>
+        </div>
+        <div class="md:col-span-5">
+          <div class="rounded-2xl border border-white/10 bg-ink/55 p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-xs text-ash">Adresse</div>
+                <div class="mt-1 font-medium">12 Imp. Berthaud, 75003 Paris</div>
+              </div>
+              <i class="fa-solid fa-location-dot text-champagne/90"></i>
+            </div>
+            <div class="mt-4 divider"></div>
+            <div class="mt-4 flex items-center justify-between">
+              <div>
+                <div class="text-xs text-ash">Téléphone</div>
+                <div class="mt-1 font-medium">+33 1 42 74 55 44</div>
+              </div>
+              <a href="tel:+33142745544" class="text-sm text-champagne/90 hover:text-champagne transition">Appeler</a>
+            </div>
+            <div class="mt-4 divider"></div>
+            <div class="mt-4 flex items-center justify-between">
+              <div>
+                <div class="text-xs text-ash">Quartier</div>
+                <div class="mt-1 font-medium">Le Marais · Paris 3e</div>
+              </div>
+              <i class="fa-solid fa-mug-hot text-champagne/90"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="relative">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:py-20">
+      <div class="reveal max-w-3xl">
+        <div class="text-xs tracking-[0.18em] uppercase text-ash">L’expérience</div>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl">Simplicité, précision, saison.</h2>
+        <p class="mt-5 text-ash leading-relaxed">
+          Ici, on mise sur l’essentiel : une cuisine française contemporaine, accessible et bien exécutée.
+          L’assiette reste lisible, les sauces sont nettes, et la saison dicte le rythme.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="reveal rounded-2xl border border-white/10 bg-ink/45 p-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/20 grid place-items-center">
+              <i class="fa-solid fa-seedling text-champagne/90"></i>
+            </div>
+            <h3 class="font-medium">Sourcing & saison</h3>
+          </div>
+          <p class="mt-4 text-sm text-ash leading-relaxed">
+            Des ingrédients de marché, une carte qui s’adapte et quelques incontournables.
+            Le goût prime, sans surcharge.
+          </p>
+        </div>
+
+        <div class="reveal rounded-2xl border border-white/10 bg-ink/45 p-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/20 grid place-items-center">
+              <i class="fa-solid fa-fire-flame-curved text-champagne/90"></i>
+            </div>
+            <h3 class="font-medium">Cuissons maîtrisées</h3>
+          </div>
+          <p class="mt-4 text-sm text-ash leading-relaxed">
+            Une cuisine de bistrot modernisée : textures, températures et assaisonnements équilibrés.
+          </p>
+        </div>
+
+        <div class="reveal rounded-2xl border border-white/10 bg-ink/45 p-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-champagne/10 border border-champagne/20 grid place-items-center">
+              <i class="fa-solid fa-wine-glass text-champagne/90"></i>
+            </div>
+            <h3 class="font-medium">Cave & accords</h3>
+          </div>
+          <p class="mt-4 text-sm text-ash leading-relaxed">
+            Une sélection pensée pour accompagner la carte : rouges souples, blancs tendus,
+            et des options au verre.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal mt-10 divider"></div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="reveal lg:col-span-5 rounded-2xl border border-white/10 bg-ink/45 overflow-hidden">
+          <div class="aspect-[4/3] bg-cover bg-center"
+               style="background-image:url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1600&q=70');"></div>
+          <div class="p-6">
+            <div class="text-xs text-ash tracking-[0.18em] uppercase">Le lieu</div>
+            <h3 class="mt-2 font-display text-2xl">Lumière tamisée, lignes sobres.</h3>
+            <p class="mt-3 text-sm text-ash leading-relaxed">
+              Une atmosphère calme, presque confidentielle. L’adresse se niche dans une impasse :
+              on y retrouve l’énergie du quartier… sans le bruit.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="reveal rounded-2xl border border-white/10 bg-ink/45 p-7">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="text-xs text-ash tracking-[0.18em] uppercase">La philosophie</div>
+                <h3 class="mt-2 font-display text-2xl">Faire simple, mais parfaitement.</h3>
+              </div>
+              <div class="hidden sm:block w-12 h-12 rounded-2xl bg-champagne/10 border border-champagne/20 grid place-items-center">
+                <i class="fa-solid fa-star text-champagne/90"></i>
+              </div>
+            </div>
+            <p class="mt-4 text-ash leading-relaxed">
+              Le Hangar privilégie une cuisine française contemporaine, claire et rassurante.
+              Des classiques revus avec légèreté, une carte cohérente, et le plaisir de bien manger
+              dans un cadre serein.
+            </p>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+                <div class="text-xs text-ash">Ce que vous trouverez</div>
+                <ul class="mt-3 space-y-2 text-sm text-bone/90">
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Assiettes de saison</li>
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Recettes françaises contemporaines</li>
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Desserts classiques & maîtrisés</li>
+                </ul>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+                <div class="text-xs text-ash">Idéal pour</div>
+                <ul class="mt-3 space-y-2 text-sm text-bone/90">
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Dîner à deux</li>
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Déjeuner tranquille</li>
+                  <li class="flex gap-2"><span class="text-champagne/80">•</span>Table de quartier</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal mt-4 rounded-2xl border border-white/10 bg-ink/45 p-7">
+            <div class="text-xs text-ash tracking-[0.18em] uppercase">Le chef</div>
+            <h3 class="mt-2 font-display text-2xl">Une signature discrète.</h3>
+            <p class="mt-4 text-ash leading-relaxed">
+              (Info à compléter si vous avez le nom du Chef.)  
+              L’esprit de la maison : une cuisine lisible, de saison, et un service simple, sans cérémonial.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-obsidian/40 px-3 py-1 text-xs text-ash">Saison</span>
+              <span class="rounded-full border border-white/10 bg-obsidian/40 px-3 py-1 text-xs text-ash">Bistrot</span>
+              <span class="rounded-full border border-white/10 bg-obsidian/40 px-3 py-1 text-xs text-ash">Marais</span>
+              <span class="rounded-full border border-white/10 bg-obsidian/40 px-3 py-1 text-xs text-ash">Cuisine française</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="relative">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:py-20">
+      <div class="reveal flex items-end justify-between gap-6 flex-wrap">
+        <div class="max-w-3xl">
+          <div class="text-xs tracking-[0.18em] uppercase text-ash">La carte</div>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl">Des classiques, bien faits.</h2>
+          <p class="mt-5 text-ash leading-relaxed">
+            Exemples d’assiettes (la carte peut évoluer).  
+            Certaines suggestions ci-dessous sont issues de plats souvent mentionnés/photographiés par les clients.
+          </p>
+        </div>
+        <a href="tel:+33142745544" class="reveal inline-flex items-center gap-2 rounded-2xl border border-champagne/25 bg-champagne/10 px-5 py-3 text-sm text-bone hover:bg-champagne/15 transition">
+          <i class="fa-solid fa-phone text-champagne/90"></i> Réserver par téléphone
+        </a>
+      </div>
+
+      <div class="reveal mt-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Entrées -->
+        <div class="rounded-2xl border border-white/10 bg-ink/45 p-7">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-2xl">Entrées</h3>
+            <span class="text-xs text-ash">À partager… ou pas</span>
+          </div>
+          <div class="mt-5 space-y-5">
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Tartare de saumon</div>
+                <div class="text-xs text-ash">—</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Fraîcheur, assaisonnement net.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Salade de lentilles & roquette</div>
+                <div class="text-xs text-ash">—</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Une entrée simple et gourmande.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Entrée du marché</div>
+                <div class="text-xs text-ash">Selon saison</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Suggestion du jour (demandez au service).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plats -->
+        <div class="rounded-2xl border border-white/10 bg-ink/45 p-7">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-2xl">Plats</h3>
+            <span class="text-xs text-ash">Cuisine française moderne</span>
+          </div>
+          <div class="mt-5 space-y-5">
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Ravioli (selon inspiration)</div>
+                <div class="text-xs text-ash">—</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Un plat régulièrement aperçu à la table.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Pièce du moment & garniture</div>
+                <div class="text-xs text-ash">Selon saison</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Cuisson maîtrisée, jus court.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Option végétarienne du jour</div>
+                <div class="text-xs text-ash">Selon saison</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Légumes, céréales, sauce légère.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="rounded-2xl border border-white/10 bg-ink/45 p-7">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-2xl">Desserts</h3>
+            <span class="text-xs text-ash">Classiques</span>
+          </div>
+          <div class="mt-5 space-y-5">
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Crème brûlée</div>
+                <div class="text-xs text-ash">—</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Caramélisation fine, vanille.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Glace & sorbet</div>
+                <div class="text-xs text-ash">—</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Fraîcheur, fin de repas légère.</p>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between gap-4">
+                <div class="font-medium">Dessert du moment</div>
+                <div class="text-xs text-ash">Selon saison</div>
+              </div>
+              <p class="mt-1 text-sm text-ash">Demandez la suggestion du jour.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal mt-10 rounded-2xl border border-white/10 bg-ink/35 p-6 sm:p-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <div class="text-xs text-ash tracking-[0.18em] uppercase">Formules & budget</div>
+            <div class="mt-2 text-bone/90">
+              Comptez généralement <span class="text-champagne/90 font-medium">30–40 €</span> à la carte (selon choix).
+            </div>
+          </div>
+          <a href="#infos" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-bone text-obsidian px-6 py-3 font-medium hover:opacity-90 transition">
+            <i class="fa-solid fa-circle-info"></i> Voir les infos pratiques
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS -->
+  <section id="infos" class="relative">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:py-20">
+      <div class="reveal max-w-3xl">
+        <div class="text-xs tracking-[0.18em] uppercase text-ash">Infos pratiques</div>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl">Horaires, contact, réservation.</h2>
+        <p class="mt-5 text-ash leading-relaxed">
+          Pour réserver, le plus simple est d’appeler.  
+          <span class="text-ash/80">Horaires indiqués à titre informatif (peuvent varier selon périodes).</span>
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <div class="reveal lg:col-span-7 rounded-2xl border border-white/10 bg-ink/45 p-7">
+          <h3 class="font-display text-2xl">Horaires</h3>
+          <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+              <div class="text-ash">Mardi — Samedi</div>
+              <div class="mt-1 font-medium text-bone">12:00 — 14:30 · 19:00 — 23:00</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+              <div class="text-ash">Dimanche — Lundi</div>
+              <div class="mt-1 font-medium text-bone">Fermé</div>
+            </div>
+          </div>
+
+          <div class="mt-6 divider"></div>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+              <div class="text-xs text-ash">Téléphone</div>
+              <div class="mt-1 font-medium">+33 1 42 74 55 44</div>
+              <a class="mt-3 inline-flex items-center gap-2 text-sm text-champagne/90 hover:text-champagne transition" href="tel:+33142745544">
+                Appeler maintenant <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-obsidian/40 p-5">
+              <div class="text-xs text-ash">Adresse</div>
+              <div class="mt-1 font-medium">12 Imp. Berthaud, 75003 Paris</div>
+              <a class="mt-3 inline-flex items-center gap-2 text-sm text-champagne/90 hover:text-champagne transition" href="#acces">
+                Itinéraire <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal lg:col-span-5 rounded-2xl border border-white/10 bg-ink/45 p-7">
+          <h3 class="font-display text-2xl">Réserver</h3>
+          <p class="mt-4 text-ash leading-relaxed">
+            Réservation recommandée aux heures de pointe.  
+            Cliquez pour appeler (mobile) ou copiez le numéro.
+          </p>
+
+          <div class="mt-6 rounded-2xl border border-champagne/25 bg-champagne/10 p-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="text-xs text-ash tracking-[0.18em] uppercase">Contact</div>
+                <div class="mt-2 text-xl font-medium">+33 1 42 74 55 44</div>
+                <div class="mt-1 text-sm text-ash">Restaurant français · Paris 3e</div>
+              </div>
+              <i class="fa-solid fa-phone-volume text-champagne/90 text-2xl"></i>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a href="tel:+33142745544" class="rounded-2xl bg-bone text-obsidian px-5 py-3 font-medium hover:opacity-90 transition inline-flex items-center justify-center gap-2">
+                <i class="fa-solid fa-phone"></i> Appeler
+              </a>
+              <button id="copyBtn" class="rounded-2xl border border-white/15 bg-ink/60 px-5 py-3 font-medium hover:bg-ink/80 transition inline-flex items-center justify-center gap-2">
+                <i class="fa-solid fa-copy text-champagne/90"></i> Copier
+              </button>
+            </div>
+
+            <div id="copiedToast" class="mt-4 hidden text-sm text-ash">
+              <i class="fa-solid fa-check text-champagne/90"></i> Numéro copié.
+            </div>
+          </div>
+
+          <div class="mt-6 text-xs text-ash/80">
+            Astuce : métro <span class="text-bone/80">Rambuteau (L11)</span>, à quelques minutes à pied.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS / MAP -->
+  <section id="acces" class="relative">
+    <div class="mx-auto max-w-7xl px-5 pb-16 sm:pb-20">
+      <div class="reveal flex items-end justify-between flex-wrap gap-6">
+        <div class="max-w-3xl">
+          <div class="text-xs tracking-[0.18em] uppercase text-ash">Accès</div>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl">12 Imp. Berthaud, 75003 Paris</h2>
+          <p class="mt-5 text-ash leading-relaxed">
+            Une impasse tranquille à deux pas du Marais.  
+            Utilisez la carte ci-dessous pour votre itinéraire.
+          </p>
+        </div>
+        <a class="reveal inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-ink/55 px-5 py-3 text-sm text-bone hover:bg-ink/75 transition"
+           target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=Le%20Hangar%2012%20Imp.%20Berthaud%2075003%20Paris">
+          <i class="fa-solid fa-diamond-turn-right text-champagne/90"></i> Ouvrir dans Google Maps
+        </a>
+      </div>
+
+      <div class="reveal mt-10 map-frame">
+        <iframe
+          title="Carte — Le Hangar"
+          src="https://www.google.com/maps?q=Le%20Hangar%2012%20Imp.%20Berthaud%2075003%20Paris&output=embed"
+          width="100%" height="520" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 bg-ink/40">
+    <div class="mx-auto max-w-7xl px-5 py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <div class="font-display text-xl">Le Hangar</div>
+          <div class="mt-2 text-sm text-ash">12 Imp. Berthaud, 75003 Paris · +33 1 42 74 55 44</div>
+        </div>
+        <div class="text-sm text-ash">
+          © <span id="year"></span> · Fait avec ❤️ par <span class="text-bone/90">AgenceDigi</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS: smooth scroll + reveal + copy -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === "#") return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Copy phone
+    const copyBtn = document.getElementById('copyBtn');
+    const toast = document.getElementById('copiedToast');
+    copyBtn?.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText('+33 1 42 74 55 44');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 1800);
+      }catch(e){
+        // Fallback
+        const t = document.createElement('textarea');
+        t.value = '+33 1 42 74 55 44';
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 1800);
+      }
+    });
+  </script>
+</body>
+</html>
